@@ -1,6 +1,8 @@
-﻿namespace Application.Logic;
+﻿using Application.LogicInterface;
 
-public class PostLogic
+namespace Application.Logic;
+
+public class PostLogic:IPostLogic
 {
     
 }
