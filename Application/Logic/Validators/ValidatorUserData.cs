@@ -3,7 +3,7 @@ using Domain.DTOs;
 
 namespace Application.Logic.Validators;
 
-public class ValidatorData
+public class ValidatorUserData
 {
     public static void ValidateDataUser(UserCreationDto userCreate)
     {

@@ -1,6 +1,7 @@
 using Application.DAOInterface;
 using Application.Logic;
 using Application.LogicInterface;
+using Domain.Models;
 using FileData;
 using FileData.DAOs;
 
@@ -14,8 +15,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<FileContext>();
+
 builder.Services.AddScoped<IUserDao, UserFileDao>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
+
+builder.Services.AddScoped<IPostDao, PostFileDao>();
+builder.Services.AddScoped<IPostLogic, PostLogic>();
 
 var app = builder.Build();
 

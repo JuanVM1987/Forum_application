@@ -1,10 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using Application.DAOInterface;
+﻿using Application.DAOInterface;
 using Application.Logic.Validators;
 using Application.LogicInterface;
 using Domain.DTOs;
 using Domain.Models;
-using Validator = System.ComponentModel.DataAnnotations.Validator;
 
 namespace Application.Logic;
 
@@ -25,18 +23,20 @@ public class UserLogic:IUserLogic
             throw new Exception($"¡{userCreateDto.UserName} Already Exist!");
         }
 
-        ValidatorData.ValidateDataUser(userCreateDto);
-        User creating = new User
-        {
-            UserName = userCreateDto.UserName,
-            Password = userCreateDto.Password
-        };
+        ValidatorUserData.ValidateDataUser(userCreateDto);
+        User creating = new User(userCreateDto.UserName, userCreateDto.Password);
         User created= await _userDao.CreateAsync(creating);
         return created;
     }
 
-    public Task<IEnumerable<User>> GetAsync(SearchUserParametersDto parametersDto)
+    public async Task<IEnumerable<User>> GetAsync(SearchUserParametersDto parametersDto)
     {
+        List<User> list = new List<User>();
+        IEnumerable<User> users = await _userDao.GetAsync(parametersDto);
         
+        //hide password
+        users.ToList().ForEach(u=>list.Add(new User(u.Username,u.Password="*****")));
+
+        return list.AsEnumerable();
     }
 }

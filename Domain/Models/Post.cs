@@ -2,15 +2,14 @@
 
 public class Post
 {
-    public int Id { get; }
+    public int Id { get; set; }
     public string Title { get; set; }
-    public User User { get; }
-    public string Message { get; set; }
-
-    public Post(string title, User user, string message)
+    public string Body { get; set; }
+    public User Owner { get; }
+    public Post(User owner,string title,  string body)
     {
         Title = title;
-        User = user;
-        Message = message;
+        Owner = owner;
+        Body = body;
     }
 }
