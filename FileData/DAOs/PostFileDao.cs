@@ -38,7 +38,7 @@ public class PostFileDao:IPostDao
         return Task.FromResult(existing);
     }
 
-    public Task<IEnumerable<Post>> GrtAsync(SerchPostParametersDto dto)
+    public Task<IEnumerable<Post>> GrtAsync(SearchPostParametersDto dto)
     {
         IEnumerable <Post> result = _context.Posts.AsEnumerable();
         

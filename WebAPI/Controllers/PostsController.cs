@@ -37,7 +37,7 @@ public class PostsController:ControllerBase
     {
         try
         {
-            SerchPostParametersDto parameters = new SerchPostParametersDto(postId, title, owner, created);
+            SearchPostParametersDto parameters = new SearchPostParametersDto(postId, title, owner, created);
             var posts = await _postLogic.GetAsync(parameters);
             return Ok(posts);
         }
