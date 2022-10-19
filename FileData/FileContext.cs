@@ -31,7 +31,7 @@ public class FileContext
     
         if (!File.Exists(FilePath))
         {
-            _dataContainer = new ()
+            _dataContainer = new DataContainer
             {
                 Posts = new List<Post>(),
                 Users = new List<User>()

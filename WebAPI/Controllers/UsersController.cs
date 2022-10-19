@@ -31,7 +31,7 @@ public class UsersController:ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] string? username)
+    public async Task<ActionResult<IEnumerable<UserBasicDto>>> Get([FromQuery] string? username)
     {
         try
         {

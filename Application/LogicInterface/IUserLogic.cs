@@ -6,5 +6,5 @@ namespace Application.LogicInterface;
 public interface IUserLogic
 {
     Task<User> CreateAsync(UserCreationDto userCreateDto);
-    Task<IEnumerable<User>> GetAsync(SearchUserParametersDto parametersDto);
+    Task<IEnumerable<UserBasicDto>> GetAsync(SearchUserParametersDto parametersDto);
 }

@@ -15,7 +15,12 @@ public class ValidatorUserData
         {
             throw new Exception("username must be at least 4 characters, and less than 16 characters!");
         }
+        //validate Name
         
+        if (string.IsNullOrEmpty(userCreate.Name)||string.IsNullOrEmpty(userCreate.Surname))
+        {
+            throw new Exception("Name and Surname can not be empty");
+        }
         //validate password
         var password = userCreate.Password;
         const string pattern2 = @"(?=.*[a-z])" + @"(?=.*[A-Z])" + @"(?=.*\d)" + 

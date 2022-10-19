@@ -31,4 +31,21 @@ public class PostsController:ControllerBase
 
         }
     }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Post>>> GetAsync([FromQuery]int? postId,[FromQuery] string? title,[FromQuery] string? owner,[FromQuery] DateTime? created)
+    {
+        try
+        {
+            SerchPostParametersDto parameters = new SerchPostParametersDto(postId, title, owner, created);
+            var posts = await _postLogic.GetAsync(parameters);
+            return Ok(posts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
 }

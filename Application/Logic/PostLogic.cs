@@ -1,4 +1,5 @@
-﻿using Application.DAOInterface;
+﻿using System.Globalization;
+using Application.DAOInterface;
 using Application.Logic.Validators;
 using Application.LogicInterface;
 using Domain.DTOs;
@@ -27,10 +28,14 @@ public class PostLogic:IPostLogic
         {
             throw new Exception($"User: {dto.Username} already created a post with title: {dto.Title}!");
         }
-        User user = new User(checkUser.Username, "*****");
-        Post post = new Post(user, dto.Title, dto.Body);
+        Post post = new Post(dto.Username, dto.Title, dto.Body);
         
         Post create= await _postDao.CreateAsync(post);
         return create;
+    }
+
+    public  Task<IEnumerable<Post>> GetAsync(SerchPostParametersDto dto)
+    {
+        return _postDao.GrtAsync(dto);
     }
 }

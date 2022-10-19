@@ -24,18 +24,16 @@ public class UserLogic:IUserLogic
         }
 
         ValidatorUserData.ValidateDataUser(userCreateDto);
-        User creating = new User(userCreateDto.UserName, userCreateDto.Password);
+        User creating = new User(userCreateDto.UserName,userCreateDto.Name,userCreateDto.Surname, userCreateDto.Password);
         User created= await _userDao.CreateAsync(creating);
         return created;
     }
 
-    public async Task<IEnumerable<User>> GetAsync(SearchUserParametersDto parametersDto)
+    public async Task<IEnumerable<UserBasicDto>> GetAsync(SearchUserParametersDto parametersDto)
     {
-        List<User> list = new List<User>();
+        List<UserBasicDto> list = new List<UserBasicDto>();
         IEnumerable<User> users = await _userDao.GetAsync(parametersDto);
-        
-        //hide password
-        users.ToList().ForEach(u=>list.Add(new User(u.Username,u.Password="*****")));
+        users.ToList().ForEach(u=>list.Add(new UserBasicDto(u.Username,u.Name,u.Surname)));
 
         return list.AsEnumerable();
     }
