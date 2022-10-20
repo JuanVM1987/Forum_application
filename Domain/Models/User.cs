@@ -3,17 +3,16 @@
 public class User
 {
     public string Username { get; set; }
-    public string Name { get; set; }
-    public string Surname { get; set; }
+   
+    public string Email { get; set; }
     public string Password { get; set; }
     
 
-    public User(string username,string name, string surname,string password)
+    public User(string username,string email,string password)
     {
         Username = username;
-        Name = name;
         Password = password;
-        Surname = surname;
+        Email = email;
     }
     
 }

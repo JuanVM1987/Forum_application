@@ -24,7 +24,7 @@ public class UserLogic:IUserLogic
         }
 
         ValidatorUserData.ValidateDataUser(userCreateDto);
-        User creating = new User(userCreateDto.UserName,userCreateDto.Name,userCreateDto.Surname, userCreateDto.Password);
+        User creating = new User(userCreateDto.UserName,userCreateDto.Email, userCreateDto.Password);
         User created= await _userDao.CreateAsync(creating);
         return created;
     }
@@ -33,7 +33,7 @@ public class UserLogic:IUserLogic
     {
         List<UserBasicDto> list = new List<UserBasicDto>();
         IEnumerable<User> users = await _userDao.GetAsync(parametersDto);
-        users.ToList().ForEach(u=>list.Add(new UserBasicDto(u.Username,u.Name,u.Surname)));
+        users.ToList().ForEach(u=>list.Add(new UserBasicDto(u.Username,u.Email)));
 
         return list.AsEnumerable();
     }

@@ -1,17 +1,17 @@
-﻿namespace Domain.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.DTOs;
 
 public class UserCreationDto
 {
     public string UserName { get;}
-    public string Name { get;}
-    public string Surname { get; }
+    public string Email { get; }
     public string Password { get; }
-
-    public UserCreationDto(string userName, string name, string surname, string password)
+    
+    public UserCreationDto(string userName, string email, string password)
     {
         UserName = userName;
         Password = password;
-        Surname = surname;
-        Name = name;
+        Email = email;
     }
 }

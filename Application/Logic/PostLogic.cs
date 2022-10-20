@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using Application.DAOInterface;
-using Application.Logic.Validators;
+﻿using Application.DAOInterface;
 using Application.LogicInterface;
 using Domain.DTOs;
 using Domain.Models;
@@ -34,8 +32,8 @@ public class PostLogic:IPostLogic
         return create;
     }
 
-    public  Task<IEnumerable<Post>> GetAsync(SearchPostParametersDto dto)
+    public async Task<IEnumerable<Post>> GetAsync(SearchPostParametersDto dto)
     {
-        return _postDao.GrtAsync(dto);
+        return await _postDao.GrtAsync(dto);
     }
 }

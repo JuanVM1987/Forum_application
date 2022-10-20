@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
 using Domain.DTOs;
 
 namespace Application.Logic.Validators;
@@ -15,18 +16,25 @@ public class ValidatorUserData
         {
             throw new Exception("username must be at least 4 characters, and less than 16 characters!");
         }
-        //validate Name
-        
-        if (string.IsNullOrEmpty(userCreate.Name)||string.IsNullOrEmpty(userCreate.Surname))
+        //validate Email
+        var emailAddress = new MailAddress(userCreate.Email);
+        if (string.IsNullOrEmpty(userCreate.Email))
         {
-            throw new Exception("Name and Surname can not be empty");
+            throw new Exception("Email can not be empty");
         }
+        string patterEmail = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov|dk|es)$";
+        Regex regexEmail = new Regex(patterEmail,RegexOptions.IgnoreCase);
+        if (!regexEmail.IsMatch(userCreate.Email))
+        {
+            throw new Exception("Email is not valid");
+        }
+        
         //validate password
         var password = userCreate.Password;
         const string pattern2 = @"(?=.*[a-z])" + @"(?=.*[A-Z])" + @"(?=.*\d)" + 
                                 @"(?=.*[ !""#$%&'()*+,-./:;<=>?@\[\]\^_`{|}~])";
         
-        var regex2 = new Regex(pattern2);
+        var regex2 = new Regex(pattern2,RegexOptions.IgnoreCase);
        
         if (!regex2.IsMatch(password))
         {

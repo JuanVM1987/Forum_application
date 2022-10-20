@@ -22,7 +22,7 @@ public class PostFileDao:IPostDao
             id = _context.Posts.Max(o => o.Id);
             id++;
         }
-        post.Created=DateTime.Now;
+        post.Created= DateTime.Now;
         post.Id = id;
         _context.Posts.Add(post);
         _context.SaveChanges();
