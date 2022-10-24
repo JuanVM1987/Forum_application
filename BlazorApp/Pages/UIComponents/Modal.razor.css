@@ -1,0 +1,21 @@
+﻿.modal-background {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    display:block;
+}
+
+/* Modal Content/Box */
+.modal-box {
+    background-color: #ffffff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid #0dcaf0;
+    /*display:inline-block;*/
+    width: 30%; /* Could be more or less, depending on screen size */
+    min-width: 300px;
+}

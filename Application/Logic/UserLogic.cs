@@ -24,7 +24,7 @@ public class UserLogic:IUserLogic
         }
 
         ValidatorUserData.ValidateDataUser(userCreateDto);
-        User creating = new User(userCreateDto.UserName,userCreateDto.Email, userCreateDto.Password);
+        User creating = new User(userCreateDto.UserName,userCreateDto.Email, userCreateDto.Password,2);
         User created= await _userDao.CreateAsync(creating);
         return created;
     }

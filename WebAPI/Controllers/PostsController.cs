@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers;
 [ApiController]
 [Route("[Controller]")]
-
 public class PostsController:ControllerBase
 {
     private readonly IPostLogic _postLogic;

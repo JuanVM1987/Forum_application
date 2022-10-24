@@ -1,0 +1,75 @@
+﻿@page "/ViewPosts"
+@using HttpClients.ClientInterface
+@using Domain.Models
+
+@inject IPostService _service;
+<AuthorizeView>
+    <Authorized>
+        <div class="container h-100" id="ex">
+            <h2 class="text-center mb-5">POSTS</h2>
+            <div class="card-header">
+
+            </div>
+            <div class="row d-flex justify-content-center align-items-left h-100 w-50">
+
+
+                @if (!string.IsNullOrEmpty(msg))
+                {
+                    <label style="color: red">@msg</label>
+                }
+                @if (posts == null)
+                {
+                }
+                else if (!posts.Any())
+                {
+                    <p>No Post to display</p>
+                }
+                else
+                {
+                    @foreach (var p in posts)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <small class="text-muted" style="margin-bottom: 10px">#@p.Id, by @p.Owner</small>
+                                </div>
+                                <div class="card-title" style="color: blue">@p.Title</div>
+                                <div class="card-text"> @p.Body</div>
+                                <div class="card-text" style="margin-top: 10px">
+                                    <small class="text-muted">Posted on: @p.Created</small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="form-outline mb-4" style="margin-top: 50px">
+            <label class="form-label">You must login first!</label>
+        </div>
+    </NotAuthorized>
+
+</AuthorizeView>
+
+@code {
+    private IEnumerable<Post>? posts;
+    private string msg = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            posts = await _service.GetAsync(null, null, null, null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+}
