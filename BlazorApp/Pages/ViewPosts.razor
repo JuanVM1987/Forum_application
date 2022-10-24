@@ -3,57 +3,58 @@
 @using Domain.Models
 
 @inject IPostService _service;
-<AuthorizeView>
-    <Authorized>
-        <div class="container h-100" id="ex">
-            <h2 class="text-center mb-5">POSTS</h2>
-            <div class="card-header">
+@* <AuthorizeView> *@
+@*     <Authorized> *@
 
-            </div>
-            <div class="row d-flex justify-content-center align-items-left h-100 w-50">
+<h2 class="text-center mb-5">POSTS</h2>
 
 
-                @if (!string.IsNullOrEmpty(msg))
-                {
-                    <label style="color: red">@msg</label>
-                }
-                @if (posts == null)
-                {
-                }
-                else if (!posts.Any())
-                {
-                    <p>No Post to display</p>
-                }
-                else
-                {
-                    @foreach (var p in posts)
-                    {
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <small class="text-muted" style="margin-bottom: 10px">#@p.Id, by @p.Owner</small>
-                                </div>
-                                <div class="card-title" style="color: blue">@p.Title</div>
-                                <div class="card-text"> @p.Body</div>
-                                <div class="card-text" style="margin-top: 10px">
-                                    <small class="text-muted">Posted on: @p.Created</small>
-                                </div>
-                            </div>
+<div class=" row container h-100" id="ex">
+
+
+    <div class="col-md-6">
+
+
+        @if (!string.IsNullOrEmpty(msg))
+        {
+            <label style="color: red">@msg</label>
+        }
+        @if (posts == null)
+        {
+        }
+        else if (!posts.Any())
+        {
+            <p>No Post to display</p>
+        }
+        else
+        {
+            @foreach (var p in posts)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <small class="text-muted" style="margin-bottom: 10px">#@p.Id, by @p.Owner</small>
                         </div>
-                    }
-                }
+                        <div class="card-title" style="color: blue">@p.Title</div>
+                        <div class="card-text"> @p.Body</div>
+                        <div class="card-text" style="margin-top: 10px">
+                            <small class="text-muted">Posted on: @p.Created</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 
-
-            </div>
-        </div>
-    </Authorized>
+</div>
+@*</Authorized>
     <NotAuthorized>
         <div class="form-outline mb-4" style="margin-top: 50px">
             <label class="form-label">You must login first!</label>
         </div>
     </NotAuthorized>
 
-</AuthorizeView>
+</AuthorizeView>*@
 
 @code {
     private IEnumerable<Post>? posts;

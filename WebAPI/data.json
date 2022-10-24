@@ -1,0 +1,139 @@
+{
+  "Users": [
+    {
+      "Username": "Juan",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "1",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Falcon",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Tente",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Pepe5",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "juan85",
+      "Email": "Martin@jgjg.com",
+      "Password": "Martin1234!",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Felipe",
+      "Email": "skjdh@jfh.com",
+      "Password": "Martin1234!",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "juan88",
+      "Email": "jkdkd@fff.com",
+      "Password": "ksdjksjdsk2dhdjR!",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "juanrdd",
+      "Email": "Edkf@dldfk.com",
+      "Password": "Felipe1234!",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "pepeppeoridjj3",
+      "Email": "lksks@kdjhfkj.dk",
+      "Password": "Juan1234@",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Tente4",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Tente5",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Tente8",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "Tente66",
+      "Email": "djjdhf@jfhf.com",
+      "Password": "striD33d!d",
+      "SecurityLevel": 2
+    },
+    {
+      "Username": "juan00",
+      "Email": "dksj@kdjfd.com",
+      "Password": "Queso123@",
+      "SecurityLevel": 2
+    }
+  ],
+  "Posts": [
+    {
+      "Id": 6,
+      "Title": "wei\u0060refsk\u00F1",
+      "Body": "s\u00F1ldfhs\u00F1dafhosdhfops\u00F1dhfjhsd\u00F1fksjkdfh",
+      "Owner": "Juan",
+      "Created": "2022-10-23T17:15:38.2755315+02:00"
+    },
+    {
+      "Id": 7,
+      "Title": "s\u00B4rofjaisjdf",
+      "Body": "s\u00F1lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll s\u00F1lkddddddddddddddddddddddddddddddddddddddd jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjloooooooooooooooooooooooooooooooooooooooooo ooooooooooooo",
+      "Owner": "Juan",
+      "Created": "2022-10-23T17:19:05.847598+02:00"
+    },
+    {
+      "Id": 8,
+      "Title": "rfer",
+      "Body": "sdsdsd",
+      "Owner": "Juan",
+      "Created": "2022-10-23T17:47:11.5464825+02:00"
+    },
+    {
+      "Id": 9,
+      "Title": "\u00F1rdiughr",
+      "Body": "sjdghfsjdh",
+      "Owner": "Juan",
+      "Created": "2022-10-24T15:59:16.4557111+02:00"
+    },
+    {
+      "Id": 10,
+      "Title": "ljgkj",
+      "Body": ",hjljhgj",
+      "Owner": "Juan",
+      "Created": "2022-10-24T16:02:38.7087194+02:00"
+    },
+    {
+      "Id": 11,
+      "Title": "kklgi",
+      "Body": "kfhjfjhjjjjjjjjjjjjjjjjjjjjjjjjjjhvfff",
+      "Owner": "Juan",
+      "Created": "2022-10-24T17:18:06.7728563+02:00"
+    },
+    {
+      "Id": 12,
+      "Title": "helooott",
+      "Body": "tttttttttttttttttttttttttttttttttttttttttttttttttttt",
+      "Owner": "Juan",
+      "Created": "2022-10-24T17:19:26.4716835+02:00"
+    }
+  ]
+}
