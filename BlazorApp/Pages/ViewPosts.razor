@@ -1,76 +1,126 @@
 ﻿@page "/ViewPosts"
 @using HttpClients.ClientInterface
 @using Domain.Models
-
+@using Syncfusion.Blazor.DropDowns
+@using UIComponents
 @inject IPostService _service;
-@* <AuthorizeView> *@
-@*     <Authorized> *@
+@inject NavigationManager navMgr
 
-<h2 class="text-center mb-5">POSTS</h2>
+<AuthorizeView>
+    <Authorized>
+
+        <div class=" w-100">
+            <h2 class="text-center mb-5">POSTS</h2>
+            <SfAutoComplete @bind-Value="@_title" TValue="string" TItem="Post" Placeholder="Search by title" DataSource="@_list">
+                <AutoCompleteFieldSettings Value="Title"/>
+
+            </SfAutoComplete>
+            <Button style="margin: 5px" class="border-light" @onclick="SearchByTitle">Search</Button>
+
+        </div>
+        <div class="row container">
+            <div class="col-md-6">
 
 
-<div class=" row container h-100" id="ex">
-
-
-    <div class="col-md-6">
-
-
-        @if (!string.IsNullOrEmpty(msg))
-        {
-            <label style="color: red">@msg</label>
-        }
-        @if (posts == null)
-        {
-        }
-        else if (!posts.Any())
-        {
-            <p>No Post to display</p>
-        }
-        else
-        {
-            @foreach (var p in posts)
-            {
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <small class="text-muted" style="margin-bottom: 10px">#@p.Id, by @p.Owner</small>
+                @if (!string.IsNullOrEmpty(_msg))
+                {
+                    <label style="color: red">@_msg</label>
+                }
+                @if (_posts == null)
+                {
+                }
+                else if (!_posts.Any())
+                {
+                    <p>No Post to display</p>
+                }
+                else
+                {
+                    @foreach (var p in _posts.Reverse())
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <small class="text-muted" style="margin-bottom: 10px">postID #@p.Id 
+                                        <p style="cursor:pointer;" @onclick="@(() => navMgr.NavigateTo($"/ViewUserPost/{p.Owner}"))">
+                                            by @p.Owner
+                                        </p> </small>
+                                </div>
+                                <div class="card-title">
+                                    <p>@p.Title</p>
+                                </div>
+                                <div class="card-text" style="margin-top: 10px">
+                                    <small class="text-muted">Posted on: @p.Created</small>
+                                </div>
+                                <div class="oi oi-eye">
+                                    <a style="cursor:pointer; color: blue; margin: 3px" @onclick="@(() => {BodyId = p.Id; _sowPopUp = true; })">See body</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-title" style="color: blue">@p.Title</div>
-                        <div class="card-text"> @p.Body</div>
-                        <div class="card-text" style="margin-top: 10px">
-                            <small class="text-muted">Posted on: @p.Created</small>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-
-</div>
-@*</Authorized>
+                    }
+                }
+            </div>
+        </div>
+        <Modal ShowModal="_sowPopUp">
+            <PostBody BodyId="BodyId"></PostBody>
+            <button type="button"
+                    class="btn btn-success btn-lg btn-bloc" style="margin: 5px" @onclick="@(() => _sowPopUp = false)">Back
+            </button>
+        </Modal>
+    </Authorized>
     <NotAuthorized>
         <div class="form-outline mb-4" style="margin-top: 50px">
             <label class="form-label">You must login first!</label>
         </div>
     </NotAuthorized>
 
-</AuthorizeView>*@
+</AuthorizeView>
 
 @code {
-    private IEnumerable<Post>? posts;
-    private string msg = "";
+
+
+    private IEnumerable<Post>? _posts;
+    private string? _title;
+    private List<Post>? _list = new();
+    private string _msg = "";
+    public int BodyId;
+    private bool _sowPopUp;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            posts = await _service.GetAsync(null, null, null, null);
+            _sowPopUp = false;
+            _posts = await _service.GetAsync(null, null, null, null);
+
+            SearchList();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            msg = e.Message;
+            _msg = e.Message;
         }
     }
+
+    private async Task SearchByTitle()
+    {
+        try
+        {
+            _posts = await _service.GetAsync(null, null, _title, null);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private void SearchList()
+    {
+        if (_posts != null)
+        {
+            _list = new List<Post>(_posts.ToList());
+        }
+    }
+
 
 }

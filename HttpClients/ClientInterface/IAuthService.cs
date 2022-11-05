@@ -4,10 +4,10 @@ namespace HttpClients.ClientInterface;
 
 public interface IAuthService
 {
-    public Task LoginAsync(string username, string password);
-    public Task LogoutAsync();
-    
-    public Task<ClaimsPrincipal> GetAuthAsync();
+    Task LoginAsync(string username, string password);
+    Task LogoutAsync();
 
-    public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
+    Task<ClaimsPrincipal> GetAuthAsync();
+
+    Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
 }

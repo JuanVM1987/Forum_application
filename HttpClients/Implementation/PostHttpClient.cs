@@ -1,10 +1,9 @@
 ﻿using System.Net.Http.Json;
-using System.Reflection.Emit;
-using System.Text;
 using System.Text.Json;
 using Domain.DTOs;
 using Domain.Models;
 using HttpClients.ClientInterface;
+using HttpClients.Implementation.CreateQuery;
 
 namespace HttpClients.Implementation;
 
@@ -29,10 +28,13 @@ public class PostHttpClient:IPostService
 
     }
 
-    public async Task<ICollection<Post>> GetAsync(int? postId, string? userName, string? title, DateTime? created)
+    public async Task<ICollection<Post>> GetAsync(int? postId, string? owner, string? title, DateTime? created)
     {
+        string query = ConstructQuery.ConstructQueryMethod(postId, owner, title, created);
+
         
-        HttpResponseMessage response = await client.GetAsync("/posts");
+        HttpResponseMessage response = await client.GetAsync("/posts"+query);
+        
         string check = await response.Content.ReadAsStringAsync();
         
         if (!response.IsSuccessStatusCode)
@@ -44,5 +46,20 @@ public class PostHttpClient:IPostService
             PropertyNameCaseInsensitive = true
         })!;
         return posts;
+    }
+
+    public async Task<Post> GetByIdAsync(int id)
+    {
+        HttpResponseMessage response = await client.GetAsync($"/posts/{id}");
+        string content = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(content);
+        }
+        Post post = JsonSerializer.Deserialize<Post>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return post;
     }
 }

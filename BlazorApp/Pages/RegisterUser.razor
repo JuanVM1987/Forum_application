@@ -39,7 +39,7 @@
 
                          <div class="d-flex justify-content-center">
                              <button type="button"
-                                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" @onclick="CheckPassword">Register</button>
+                                     class="btn btn-success btn-lg btn-block" @onclick="CheckPassword">Register</button>
                          </div>
                         @if (!string.IsNullOrEmpty(msg))
                         {
@@ -69,13 +69,13 @@
 </AuthorizeView>
 
 @code {
-    private string username = "";
-    private string email = "";
-    private string password = "";
-    private string confirmPassword = "";
+    private string? username = "";
+    private string? email = "";
+    private string? password = "";
+    private string? confirmPassword = "";
 
-    private string msg = "";
-    private string color = "";
+    private string? msg = "";
+    private string? color = "";
 
 
     private async Task Register()
@@ -90,6 +90,7 @@
             confirmPassword = "";
             msg = "User successfully register!";
             color = "green";
+            navMgr.NavigateTo("/Login");
             
         }
         catch (Exception e)
