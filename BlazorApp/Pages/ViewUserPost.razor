@@ -6,7 +6,7 @@
 
 
 <div class="row container">
-    <h3 style="text-align: center; margin: 10px">@Username POSTS</h3>
+    <h3 style="text-align: center; margin: 15px">@Username posts</h3>
     <div class="col-md-6">
         @if (!string.IsNullOrEmpty(_msg))
         {
@@ -19,7 +19,7 @@
         {
             @foreach (var p in _posts.Reverse())
             {
-                <div class="card post">
+                <div class="card file">
                     <div class="card-body">
                         <div class="card-text">
                             <small class="text-muted" style="margin-bottom: 10px">postID #@p.Id</small>
