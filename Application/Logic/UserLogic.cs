@@ -15,18 +15,19 @@ public class UserLogic:IUserLogic
         _userDao = userDao;
     }
 
-    public async Task<User> CreateAsync(UserCreationDto userCreateDto)
+    public async Task<UserBasicDto> CreateAsync(UserCreationDto userCreateDto)
     {
         User? check = await _userDao.GetByUsernameAsync(userCreateDto.UserName);
         if (check!=null)
         {
-            throw new Exception($"¡{userCreateDto.UserName} Already Exist!");
+            throw new Exception($"Username,  {userCreateDto.UserName}, Already register !");
         }
 
         ValidatorUserData.ValidateDataUser(userCreateDto);
         User creating = new User(userCreateDto.UserName,userCreateDto.Email, userCreateDto.Password,2);
         User created= await _userDao.CreateAsync(creating);
-        return created;
+        UserBasicDto basicDto = new UserBasicDto(created.Username, created.Email);
+        return basicDto;
     }
 
     public async Task<IEnumerable<UserBasicDto>> GetAsync(SearchUserParametersDto parametersDto)

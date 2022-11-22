@@ -50,7 +50,7 @@
 </AuthorizeView>
 
 @code {
-    private PostCreationDto dto;
+    private PostBasicDto dto;
     private string username;
     private string title;
     private string body;
@@ -63,7 +63,8 @@
         try
         {
             username = auth.GetAuthAsync().Result.Identity!.Name!;
-            dto = new PostCreationDto(username, title, body);
+            dto = new PostBasicDto(username, title, body);
+            
             await _service.CreateAsync(dto);
             navMgr.NavigateTo("/ViewPosts");
         }

@@ -16,12 +16,12 @@ public class UsersController:ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> CreateAsync([FromBody]UserCreationDto dto)
+    public async Task<ActionResult<UserBasicDto>> CreateAsync([FromBody]UserCreationDto dto)
     {
         try
         {
-            User? user = await _userLogic.CreateAsync(dto);
-            return Created($"/user/{user.Username}", user);
+            UserBasicDto user = await _userLogic.CreateAsync(dto);
+            return Created($"/users/{user.UserName}", user);
         }
         catch (Exception e)
         {

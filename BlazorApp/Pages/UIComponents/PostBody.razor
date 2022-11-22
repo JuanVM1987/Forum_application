@@ -1,5 +1,6 @@
 ﻿@using Domain.Models
 @using HttpClients.ClientInterface
+@using Domain.DTOs
 @inject IPostService Service
 
 @namespace UIComponents
@@ -21,7 +22,7 @@
     [Parameter]
     public int BodyId { get; set; }
 
-    private Post _post = new("", "", "");
+    private PostReturnDto _post = new PostReturnDto(0, "", "", "", DateTime.Now);
 
     protected override async Task OnInitializedAsync()
     {
@@ -35,9 +36,6 @@
             Console.WriteLine(e.Message);
             throw new Exception(e.Message);
         }
-             
-        
-       
     }
 
 

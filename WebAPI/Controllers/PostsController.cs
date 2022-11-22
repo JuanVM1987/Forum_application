@@ -16,11 +16,11 @@ public class PostsController:ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Post>> CreteAsync([FromBody] PostCreationDto creationDto)
+    public async Task<ActionResult<PostReturnDto>> CreteAsync([FromBody] PostBasicDto basicDto)
     {
         try
         {
-            Post post = await _postLogic.CreateAsync(creationDto);
+            var post = await _postLogic.CreateAsync(basicDto);
             return Created($"/Posts/{post.Id}", post);
         }
         catch (Exception e)
@@ -32,7 +32,7 @@ public class PostsController:ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Post>>> GetAsync([FromQuery]int? postId,[FromQuery] string? title,[FromQuery] string? owner,[FromQuery] DateTime? created)
+    public async Task<ActionResult<IEnumerable<PostReturnDto>>> GetAsync([FromQuery]int? postId,[FromQuery] string? title,[FromQuery] string? owner,[FromQuery] DateTime? created)
     {
         try
         {
@@ -40,6 +40,7 @@ public class PostsController:ControllerBase
             var posts = await _postLogic.GetAsync(parameters);
             return Ok(posts);
         }
+        
         catch (Exception e)
         {
             Console.WriteLine(e);
@@ -48,11 +49,11 @@ public class PostsController:ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Post>> GetById([FromRoute] int id)
+    public async Task<ActionResult<PostReturnDto>> GetById([FromRoute] int id)
     {
         try
         {
-            Post post = await _postLogic.GetByIdAsync(id);
+            PostReturnDto? post = await _postLogic.GetByIdAsync(id);
             return Ok(post);
         }
         catch (Exception e)

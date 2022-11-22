@@ -5,8 +5,8 @@ namespace HttpClients.ClientInterface;
 
 public interface IPostService
 {
-    Task CreateAsync(PostCreationDto dto);
-    Task<ICollection<Post>> GetAsync(int? postId, string? owner, string? title,DateTime? created);
-    Task<Post>GetByIdAsync(int id);
+    Task CreateAsync(PostBasicDto dto);
+    Task<ICollection<PostReturnDto>> GetAsync(int? postId, string? owner, string? title,DateTime? created);
+    Task<PostReturnDto>GetByIdAsync(int id);
     
 }

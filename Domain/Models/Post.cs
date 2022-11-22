@@ -8,13 +8,19 @@ public class Post
     
     public string Title { get; set; }
     public string Body { get; set; }
-    public string Owner { get; }
+    public User Owner { get; private set; }
     public DateTime Created { get; set; }
     
-    public Post(string owner,string title,  string body)
+    public Post(User owner,string title,  string body)
     {
-        Title = title;
+        Title = title; 
         Owner = owner;
         Body = body;
     }
+
+    private Post()
+    {
+        
+    }
+    
 }

@@ -3,6 +3,7 @@
 @using Domain.Models
 @using Syncfusion.Blazor.DropDowns
 @using UIComponents
+@using Domain.DTOs
 @inject IPostService _service;
 @inject NavigationManager navMgr
 
@@ -11,7 +12,7 @@
 
         <div class=" w-100">
             <h2 class="text-center mb-5">POSTS</h2>
-            <SfAutoComplete @bind-Value="@_title" TValue="string" TItem="Post" Placeholder="Search by title" DataSource="@_list">
+            <SfAutoComplete @bind-Value="@_title" TValue="string" TItem="PostReturnDto" Placeholder="Search by title" DataSource="@_list">
                 <AutoCompleteFieldSettings Value="Title"/>
 
             </SfAutoComplete>
@@ -78,9 +79,9 @@
 @code {
 
 
-    private IEnumerable<Post>? _posts;
+    private IEnumerable<PostReturnDto>? _posts;
     private string? _title;
-    private List<Post>? _list = new();
+    private List<PostReturnDto>? _list = new();
     private string _msg = "";
     public int BodyId;
     private bool _sowPopUp;
@@ -118,7 +119,7 @@
     {
         if (_posts != null)
         {
-            _list = new List<Post>(_posts.ToList());
+            _list = new List<PostReturnDto>(_posts.ToList());
         }
     }
 
